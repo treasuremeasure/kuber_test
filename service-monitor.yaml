@@ -1,0 +1,15 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: myapp-servicemonitor
+  labels:
+    release: prometheus   # !!! очень важно, чтобы метка совпадала с prometheus release
+spec:
+  selector:
+    matchLabels:
+      app: myapp           # должен совпадать с selector'ом твоего сервиса!
+  endpoints:
+    - port: http           # имя порта сервиса или просто номер
+      path: /metrics
+      interval: 15s
+      scheme: http
