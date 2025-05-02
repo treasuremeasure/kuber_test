@@ -12,27 +12,27 @@
 
 6. Загрузил образ на Docker Hub командой docker push treasuremeasure/my-app:latest
 
-7. Создал deployment.yaml для создания пода (/kub/deployment.yaml)
+7. Создал deployment.yaml для запуска пода (/kub/deployment.yaml)
 
 8. Применил deployment.yaml командой kubectl apply -f deployment.yaml
 
 9. Проверил работу поды командой kubectl get pods
 
-10. Создал service.yaml для маршрутизации внутреннего запроса на поду (/kub/service.yaml)
+10. Создал service.yaml для маршрутизации внутренних запросов на поду (/kub/service.yaml)
 
 11. Применил service.yaml командой kubectl apply -f service.yaml
 
-12. Создал ingress.yaml для маршрутизации внешнего запроса и передачи его в service (/kub/ingress.yaml)
+12. Создал ingress.yaml для маршрутизации внешних запросов (/kub/ingress.yaml)
 
 13. Применил ingress командой kubectl apply -f ingress.yaml
 
-14. Проверил доступ к приложению через localhost
+14. Проверил доступ к приложению через браузер по localhost
 
 Часть 2 — Мониторинг
 
-1. Добавил в requirements.txt prometheus_fastapi_instrumentator
+1. Добавил в requirements.txt зависимость prometheus_fastapi_instrumentator
 
-2. Добавил код для сбора метрик приложения в main.py
+2. Добавил код для сбора метрик в main.py
 
 3. Проверил отдаются ли метрики по адресу localhost:8000/metrics
 
@@ -48,16 +48,13 @@
 
 9. Создал ingress для Grafana для доступа извне (/kub/grafana-ingress.yaml)
 
-10. Написал ServiceMonitor (/kub/service-monitor.yaml)
+10. Написал ServiceMonitor для подключения метрик от приложения (/kub/service-monitor.yaml)
 
-11. Добавил лейбл k8s-сервису
+11. Убедился, что таргет myapp-servicemonitor появился в Prometheus (/targets)
 
-12. Проверил, что target появился в Prometheus
+12. Создал dashboard в Grafana
 
-13. Создал dashboard в Grafana
-
-    ![image](https://github.com/user-attachments/assets/f3ca2eda-a226-4811-989d-e8f4de1fe07b)
-
+    ![image](https://github.com/user-attachments/assets/afde428f-b2ae-4531-a381-ad9d6649038b)
 
 
 
@@ -67,6 +64,6 @@
 
 - Вынести конфиги в Helm chart
 
-- Откат версий по deployment rollout
+- Добавить стратегию отката в Deployment (kubectl rollout undo)
 
 - CI/CD для пуша образов и apply манифестов
