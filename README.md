@@ -56,6 +56,9 @@
 
 13. Создал dashboard в Grafana
 
+    ![image](https://github.com/user-attachments/assets/f3ca2eda-a226-4811-989d-e8f4de1fe07b)
+
+
 
 
 Возможные улучшения:
